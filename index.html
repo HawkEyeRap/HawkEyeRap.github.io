@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Advaith Anand · Expedition Log</title>
+<meta name="description" content="Advaith Anand, EECS + Business (M.E.T.) at UC Berkeley. Research, systems and the climb in between.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Cpath d='M3 26 L13 8 L18 16 L21 12 L29 26Z' fill='none' stroke='%23ece8e1' stroke-width='2'/%3E%3Ccircle cx='24' cy='7' r='2' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="ld-inner">
+    <div class="ld-row"><span>EXPEDITION LOG</span><span id="ld-pct">000</span></div>
+    <div class="ld-bar"><i></i></div>
+    <div class="ld-row dim"><span>GENERATING TERRAIN</span><span>36.5785° N · 118.2923° W</span></div>
+  </div>
+</div>
+
+<!-- ============ SCENE ============ -->
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="shade" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- viewfinder frame -->
+<div class="frame" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="xhair" aria-hidden="true"><i></i></div>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <a href="#trailhead" class="brand" aria-label="Back to top">
+    <span class="brand-name">ADVAITH ANAND</span>
+    <span class="brand-sub">EXPEDITION LOG — VOL. 2026</span>
+  </a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#basecamp"><i>01</i>About</a>
+    <a href="#camp1"><i>02</i>Experience</a>
+    <a href="#camp2"><i>03</i>Projects</a>
+    <a href="#camp3"><i>04</i>Leadership</a>
+    <a href="#camp4"><i>05</i>Kit</a>
+    <a href="#summit"><i>06</i>Summit</a>
+  </nav>
+</header>
+
+<!-- ============ ALTITUDE TAPE ============ -->
+<aside class="tape" aria-hidden="true">
+  <div class="tape-win"><div class="tape-strip" id="tape"></div></div>
+  <div class="tape-ptr"><b id="alt-ft">0</b><small>FT</small></div>
+</aside>
+
+<!-- ============ HUD READOUTS ============ -->
+<div class="hud hud-bl" aria-hidden="true">
+  <div><span>ALT</span><b id="h-alt">0 FT</b></div>
+  <div><span>TIME</span><b id="h-time">05:30</b></div>
+  <div><span>TEMP</span><b id="h-temp">64°F</b></div>
+  <div><span>STAGE</span><b id="h-stage">TRAILHEAD</b></div>
+</div>
+<div class="hud hud-br" aria-hidden="true">
+  <div><b id="h-lat">36.5872° N</b></div>
+  <div><b id="h-lon">118.2400° W</b></div>
+  <div><span>BRG</span><b id="h-brg">247°</b></div>
+</div>
+
+<main>
+
+<!-- ============ TRAILHEAD ============ -->
+<section class="sec hero" id="trailhead" data-stage="Trailhead">
+  <div class="wrap">
+    <div class="hero-top" data-reveal>
+      <span class="tag"><i class="dot"></i>TRAILHEAD · 0 FT</span>
+      <span class="tag dim">CUPERTINO, CA</span>
+    </div>
+    <h1 class="hero-name" aria-label="Advaith Anand">
+      <span class="line"><span>ADVAITH</span></span>
+      <span class="line"><span>ANAND</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-lede" data-reveal style="--d:.5s">Engineer, researcher, climber. I study <b>EECS + Business (M.E.T.) at UC Berkeley</b> and build ML systems that hold up in the real world.</p>
+      <div class="hero-cta" data-reveal style="--d:.65s">
+        <a href="#basecamp" class="btn btn-solid"><span>Begin the ascent</span><svg viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7"/></svg></a>
+        <a href="resume.pdf" class="btn btn-line" target="_blank" rel="noopener"><span>Résumé</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" data-reveal style="--d:1s"><span>SCROLL TO CLIMB</span><i></i></div>
+</section>
+
+<!-- ============ BASE CAMP / ABOUT ============ -->
+<section class="sec" id="basecamp" data-stage="Base Camp">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">01</span><span class="rule"></span><span>BASE CAMP</span><span class="elev"></span></div>
+      <h2 class="sec-title" data-split>THE CLIMBER</h2>
+    </header>
+
+    <div class="about">
+      <div class="about-copy" data-reveal>
+        <p class="big">First-year at <b>UC Berkeley</b> in the Management, Entrepreneurship &amp; Technology program, studying <b>Electrical Engineering &amp; Computer Sciences</b> and <b>Business Administration</b>.</p>
+        <p>I work on problems that sit between models and the real world: estimating heart rate from facial video, teaching Whisper to understand kids, or autoscaling LLM inference all the way down to zero. When I'm not writing code, I'm usually on a trail somewhere above the treeline.</p>
+      </div>
+
+      <div class="panel edu" data-reveal style="--d:.12s">
+        <div class="panel-head"><span>EDUCATION</span><span>EXP. MAY 2029</span></div>
+        <h3>University of California, Berkeley</h3>
+        <p class="muted">B.S. Electrical Engineering &amp; Computer Sciences + Business Administration — M.E.T.</p>
+        <div class="gpa">
+          <div class="gpa-num"><b class="count" data-to="4.0" data-dec="1">0.0</b><span>/ 4.0 GPA</span></div>
+          <div class="gpa-bar"><i></i></div>
+        </div>
+        <div class="panel-head sub"><span>FALL 2026 COURSEWORK</span></div>
+        <ul class="course">
+          <li><b>CS 61A</b><span>Structure &amp; Interpretation of Computer Programs</span></li>
+          <li><b>EE 66</b><span>Signals, Dynamics &amp; Information</span></li>
+          <li><b>UGBA 10X</b><span>Foundations of Business</span></li>
+          <li><b>UGBA 196</b><span>Managing Technological Innovation</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="figures" data-reveal>
+      <div class="fig"><b><span class="count" data-to="4.0" data-dec="1">0</span></b><span>GPA</span></div>
+      <div class="fig"><b>1/<span class="count" data-to="9">0</span></b><span>Analysts picked from 500+</span></div>
+      <div class="fig"><b>GOLD</b><span>USACO Division</span></div>
+      <div class="fig"><b><span class="count" data-to="30">0</span>+</b><span>Students coached</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMP I / EXPERIENCE ============ -->
+<section class="sec" id="camp1" data-stage="Camp I">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">02</span><span class="rule"></span><span>CAMP I</span><span class="elev"></span></div>
+      <h2 class="sec-title" data-split>FIELD WORK</h2>
+    </header>
+
+    <div class="log">
+      <article class="entry" data-reveal>
+        <div class="entry-date"><b>SEP 2026</b><span>— PRESENT</span><em class="live">ACTIVE</em></div>
+        <div class="panel">
+          <h3>Technical Consultant</h3>
+          <div class="org">Valley Consulting Group</div>
+          <ul class="pts">
+            <li>Selected as <mark>1 of 9 analysts from 500+ applicants</mark> for UC Berkeley's technology consulting organization.</li>
+          </ul>
+          <div class="data">
+            <div><b><span class="count" data-to="500">0</span>+</b><span>Applicants</span></div>
+            <div><b><span class="count" data-to="9">0</span></b><span>Selected</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry" data-reveal>
+        <div class="entry-date"><b>JUL 2024</b><span>— JUL 2025</span></div>
+        <div class="panel">
+          <h3>Student Researcher</h3>
+          <div class="org">UCLA Visual Machines Group</div>
+          <ul class="pts">
+            <li>Achieved <mark>4.8 bpm mean absolute error</mark> in heart-rate estimation across <mark>50+ subjects</mark> by implementing rPPG pipelines, preprocessing facial video, and comparing deep-learning predictions with measurements on UBFC-rPPG.</li>
+            <li>Identified <mark>15% higher estimation error</mark> among darker-skin-tone subjects by comparing demographic performance and prediction uncertainty, informing recommendations for representative training data and evaluation.</li>
+          </ul>
+          <div class="data">
+            <div><b><span class="count" data-to="4.8" data-dec="1">0</span><small>BPM</small></b><span>Mean abs. error</span></div>
+            <div><b><span class="count" data-to="50">0</span>+</b><span>Subjects</span></div>
+            <div><b><span class="count" data-to="15">0</span>%</b><span>Bias gap found</span></div>
+          </div>
+          <svg class="ecg" viewBox="0 0 600 50" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28 H120 L132 28 L142 8 L154 46 L164 18 L172 28 H300 L312 28 L322 8 L334 46 L344 18 L352 28 H480 L492 28 L502 8 L514 46 L524 18 L532 28 H600"/></svg>
+        </div>
+      </article>
+
+      <article class="entry" data-reveal>
+        <div class="entry-date"><b>JUL 2024</b><span>— AUG 2024</span></div>
+        <div class="panel">
+          <h3>Student Researcher</h3>
+          <div class="org">UCLA COSMOS</div>
+          <ul class="pts">
+            <li>Reduced word error rate from <mark>28% to 21%</mark> on held-out children's speech by fine-tuning OpenAI Whisper on <mark>500+ audio samples from 40+ speakers</mark>, analyzing 1,000+ transcription errors to identify recognition failures.</li>
+          </ul>
+          <div class="data">
+            <div><b><span class="count" data-to="28">0</span>→<span class="count" data-to="21">0</span>%</b><span>Word error rate</span></div>
+            <div><b><span class="count" data-to="1000">0</span>+</b><span>Errors analyzed</span></div>
+          </div>
+          <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMP II / PROJECTS ============ -->
+<section class="sec" id="camp2" data-stage="Camp II">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">03</span><span class="rule"></span><span>CAMP II</span><span class="elev"></span></div>
+      <h2 class="sec-title" data-split>FIRST ASCENTS</h2>
+      <p class="sec-lede" data-reveal>Projects I built, each with numbers I measured myself.</p>
+    </header>
+
+    <div class="routes">
+      <article class="panel route wide" data-reveal>
+        <div class="route-main">
+          <div class="route-no">01</div>
+          <div class="panel-head"><span>ROUTE · ML INFRASTRUCTURE</span><span>GRADE V</span></div>
+          <h3>Scale-to-Zero LLM Inference Engine</h3>
+          <p class="muted">A Kubernetes inference stack with vLLM, containerized serving, and request routing across <b>3 LLM sizes</b>. Prometheus queue-depth metrics feed KEDA, which scales serving pods to zero when idle and back up when traffic arrives.</p>
+          <div class="data">
+            <div><b><span class="count" data-to="850">0</span><small>MS</small></b><span>p95 time to first token</span></div>
+            <div><b><span class="count" data-to="16">0</span></b><span>Concurrent requests</span></div>
+            <div><b>0→<span class="count" data-to="4">0</span></b><span>Replicas autoscaled</span></div>
+            <div><b><span class="count" data-to="95">0</span><small>S</small></b><span>Cold-start readiness</span></div>
+          </div>
+          <ul class="tags"><li>Kubernetes</li><li>vLLM</li><li>KEDA</li><li>Prometheus</li></ul>
+        </div>
+        <div class="route-art pods" aria-hidden="true">
+          <div class="art-head"><span>CLUSTER</span><span>replicas <b class="rep">0</b>/4</span></div>
+          <div class="pod-grid"><i></i><i></i><i></i><i></i></div>
+          <div class="reqs"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="art-foot"><span>queue_depth</span><span class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+        </div>
+      </article>
+
+      <article class="panel route" data-reveal>
+        <div class="route-art doc" aria-hidden="true">
+          <div class="sheet"><i></i><i></i><i class="flag"></i><i></i><i></i><i class="flag"></i><i></i><div class="scan"></div></div>
+          <div class="doc-log"><span>sig_missing</span><span>date_conflict</span><span>total_mismatch</span></div>
+        </div>
+        <div class="route-no">02</div>
+        <div class="panel-head"><span>ROUTE · APPLIED AI</span><span>GRADE IV</span></div>
+        <h3>AI Document Review Platform</h3>
+        <p class="muted">Automates required-field, formatting and cross-field consistency checks for contracts, applications, invoices and intake forms. It flags missing signatures, conflicting names or dates, and wrong invoice totals, and explains each issue field by field with a suggested fix.</p>
+        <div class="data">
+          <div><b><span class="count" data-to="40">0</span>%</b><span>Faster review</span></div>
+          <div><b><span class="count" data-to="92">0</span>%</b><span>Precision</span></div>
+          <div><b><span class="count" data-to="100">0</span></b><span>Test docs</span></div>
+        </div>
+      </article>
+
+      <article class="panel route" data-reveal style="--d:.1s">
+        <div class="route-art breath" aria-hidden="true">
+          <svg viewBox="0 0 300 80" preserveAspectRatio="none"><path class="grid" d="M0 20H300M0 40H300M0 60H300"/><path class="b1" d="M0 40 C 25 10, 50 10, 75 40 S 125 70, 150 40 S 200 10, 225 40 S 275 70, 300 40"/></svg>
+          <div class="doc-log"><span>resp_rate</span><span>variability</span><span>auroc 0.86</span></div>
+        </div>
+        <div class="route-no">03</div>
+        <div class="panel-head"><span>ROUTE · HEALTH ML</span><span>GRADE IV</span></div>
+        <h3>Parkinson's Breathing Analysis &amp; Symptom Tracker</h3>
+        <p class="muted">Classifies Parkinson's against healthy controls from breathing-rate and variability features, using a Random Forest with subject-separated cross-validation. Includes a symptom tracker with speech-to-text and caregiver entry for users with limited fine-motor control.</p>
+        <div class="data">
+          <div><b>0.<span class="count" data-to="86" data-pad="2">00</span></b><span>AUROC</span></div>
+          <div><b><span class="count" data-to="200">0</span>+</b><span>Resp. samples</span></div>
+          <div><b><span class="count" data-to="8">0</span></b><span>Symptom categories</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMP III / LEADERSHIP ============ -->
+<section class="sec" id="camp3" data-stage="Camp III">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">04</span><span class="rule"></span><span>CAMP III</span><span class="elev"></span></div>
+      <h2 class="sec-title" data-split>ROPE TEAM</h2>
+      <p class="sec-lede" data-reveal>Teaching and leading. The best part of any climb is getting other people up it.</p>
+    </header>
+
+    <div class="cols">
+      <article class="panel" data-reveal>
+        <div class="panel-head"><span>PRESIDENT</span><span>2022 — 2026</span></div>
+        <h3>Monta Vista Competitive Programming Club</h3>
+        <p class="muted">Led training for 30+ students in graph algorithms, greedy methods and dynamic programming through guided problem-solving sessions.</p>
+        <div class="meter"><div class="meter-top"><span>Advanced to USACO Silver</span><b><span class="count" data-to="80">0</span>%</b></div><div class="meter-bar"><i style="--w:80%"></i></div></div>
+        <div class="meter"><div class="meter-top"><span>Advanced to USACO Gold</span><b><span class="count" data-to="40">0</span>%</b></div><div class="meter-bar"><i style="--w:40%"></i></div></div>
+      </article>
+      <article class="panel" data-reveal style="--d:.08s">
+        <div class="panel-head"><span>VICE PRESIDENT</span><span>2022 — 2026</span></div>
+        <h3>Monta Vista App &amp; Web Development Club</h3>
+        <p class="muted">Led student teams building web and iOS apps. I taught HTML/CSS, JavaScript and Swift, ran Git/GitHub workflows, and mentored members through planning, implementation and debugging in Xcode.</p>
+        <ul class="tags"><li>HTML/CSS</li><li>JavaScript</li><li>Swift</li><li>Git</li></ul>
+      </article>
+      <article class="panel" data-reveal style="--d:.16s">
+        <div class="panel-head"><span>INSTRUCTOR</span><span>AUG 2025 — MAY 2026</span></div>
+        <h3>theCoderSchool</h3>
+        <p class="muted">Taught Python and Scratch to <b>10+ students</b>, adapting each lesson to the student's skill level and pace.</p>
+        <ul class="tags"><li>Python</li><li>Scratch</li><li>Mentoring</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMP IV / KIT ============ -->
+<section class="sec" id="camp4" data-stage="Camp IV">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">05</span><span class="rule"></span><span>CAMP IV</span><span class="elev"></span></div>
+      <h2 class="sec-title" data-split>THE KIT</h2>
+      <p class="sec-lede" data-reveal>Packed and checked before every climb.</p>
+    </header>
+
+    <div class="cols kit">
+      <div class="panel" data-reveal>
+        <div class="panel-head"><span>A · LANGUAGES</span><span>07</span></div>
+        <ul class="check"><li>Python</li><li>C++</li><li>Java</li><li>JavaScript</li><li>Swift</li><li>SQL</li><li>HTML/CSS</li></ul>
+      </div>
+      <div class="panel" data-reveal style="--d:.08s">
+        <div class="panel-head"><span>B · FRAMEWORKS &amp; ML</span><span>07</span></div>
+        <ul class="check"><li>React</li><li>Flask</li><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>pandas</li><li>NumPy</li></ul>
+      </div>
+      <div class="panel" data-reveal style="--d:.16s">
+        <div class="panel-head"><span>C · INFRA &amp; TOOLS</span><span>07</span></div>
+        <ul class="check"><li>Kubernetes</li><li>vLLM</li><li>KEDA</li><li>Prometheus</li><li>Linux</li><li>Git/GitHub</li><li>Xcode</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUMMIT ============ -->
+<section class="sec summit" id="summit" data-stage="Summit">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-meta" data-reveal><span class="idx">06</span><span class="rule"></span><span>SUMMIT</span><span>14,505 FT</span></div>
+      <h2 class="sec-title" data-split>SUMMIT</h2>
+    </header>
+
+    <div class="honors">
+      <div class="honor" data-reveal>
+        <b>GOLD</b>
+        <div><h4>USA Computing Olympiad</h4><p>Advanced to Gold Division, one of 4,656 qualifiers.</p></div>
+      </div>
+      <div class="honor" data-reveal style="--d:.08s">
+        <b>1 / 404</b>
+        <div><h4>Monta Vista Outstanding Student</h4><p>Selected as 1 of 2 students from 404 for community impact.</p></div>
+      </div>
+      <div class="honor" data-reveal style="--d:.16s">
+        <b>2ND</b>
+        <div><h4>Stanford ASES Pitch Competition</h4><p>Second place in a technology startup pitch competition.</p></div>
+      </div>
+    </div>
+
+    <div class="contact" data-reveal>
+      <div class="stamp" aria-hidden="true"><span>SUMMIT LOGGED</span><b>14,505 FT</b><span id="stamp-time">23:59</span></div>
+      <div class="panel-head"><span>TRANSMISSION</span><span>OPEN CHANNEL</span></div>
+      <h3 class="contact-title">Let's build something.</h3>
+      <p class="muted">I'm open to internships, research and anything ambitious. Trail recommendations are welcome too.</p>
+      <a class="mail" href="mailto:advaith_anand@berkeley.edu">advaith_anand@berkeley.edu<svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="https://linkedin.com/in/advaith-anand11" target="_blank" rel="noopener"><span>LinkedIn</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-line" href="resume.pdf" target="_blank" rel="noopener"><span>Résumé</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <footer class="foot">
+    <span>© <span id="yr">2026</span> Advaith Anand</span>
+    <span>Terrain generated live on your GPU</span>
+    <a href="#trailhead">Descend ↑</a>
+  </footer>
+</section>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
